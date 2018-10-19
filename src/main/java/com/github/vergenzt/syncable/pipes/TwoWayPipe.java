@@ -1,6 +1,6 @@
 package com.github.vergenzt.syncable.pipes;
 
-import com.github.vergenzt.syncable.collections.SyncableSet;
+import com.github.vergenzt.syncable.collections.ObservableSet;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -14,7 +14,7 @@ public class TwoWayPipe<A, B> {
     private OneWayPipe<A, B> pipeAtoB;
     private OneWayPipe<B, A> pipeBtoA;
 
-    public TwoWayPipe(SyncableSet<A> setA, SyncableSet<B> setB, ConversionFunction<A, B> aToB, ConversionFunction<B, A> bToA) {
+    public TwoWayPipe(ObservableSet<A> setA, ObservableSet<B> setB, ConversionFunction<A, B> aToB, ConversionFunction<B, A> bToA) {
         this.pipeAtoB = new OneWayPipe<>(setA, setB, aToB);
         this.pipeBtoA = new OneWayPipe<>(setB, setA, bToA);
     }
